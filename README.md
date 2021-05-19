@@ -1,7 +1,30 @@
 # Movie RECT Server
+> This is server side of the Movie Site project, client side can be find [here](https://github.com/maichongju/movie-client).
+
 Using Flask as web host and MySQL as data storage. All data return in JSON formate 
 
-## API
+## Requirement 
+- python 3.x
+- MySQL Server
+
+## Quick Start
+> Make sure meet all requirement software is install.
+1. Install all the packages in `requirement.txt` to python
+    ```python 
+    pip install -r requirements.txt
+    ```
+2. Start MySQL server and load `db.sql` to database.
+3. Start Flask Server
+    ``` python
+    python app.py
+    ```
+
+## API Documentation
+
+**Table Of Content**
+- [/movies](#Movies)
+- [/movie](#Movie)
+- [/genres](#genres)
 
 ### Movies
 Get all the movies in the database 
@@ -17,19 +40,19 @@ Get all the movies in the database
   {
     "count": 1,
     "data": [
-    {
-      "date": "2021-04-30",
-      "director": "Michael Rianda",
-      "genres": [
-        "Adventure",
-        "Animation",
-        "Comedy"
-      ],
-      "id": 1,
-      "length": 113,
-      "like": 0,
-      "name": "The Mitchells vs. the Machines"
-    }
+      {
+        "date": "2021-04-30",
+        "director": "Michael Rianda",
+        "genres": [
+          "Adventure",
+          "Animation",
+          "Comedy"
+        ],
+        "id": 1,
+        "length": 113,
+        "like": 0,
+        "name": "The Mitchells vs. the Machines"
+      }
     ]
   }
   ```
