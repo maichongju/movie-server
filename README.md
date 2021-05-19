@@ -34,8 +34,8 @@ Get all the movies in the database
 `GET`
 #### Respond
 **_Success_**
-- _code_: 200
-  _content_:
+- **_code_**: 200 <br>
+  **_content_**:
   ```json
   {
     "count": 1,
@@ -58,8 +58,8 @@ Get all the movies in the database
   ```
 
 **_Error_**
-- _code_: 405 METHOD NOT ALLOWED
-_content_: 
+- **_code_**: 405 METHOD NOT ALLOWED <br/>
+**_content_**: 
 ```json
 {
   "code": 405,
@@ -67,8 +67,8 @@ _content_:
   "name": "Method Not Allowed"
 }
 ```
-- _code_: 500 INTERNAL SERVER ERROR
-_content_ : 
+- **_code_**: 500 INTERNAL SERVER ERROR <br/>
+**_content_** : 
 ```json
 {
   "error": "Internal Error"
@@ -85,8 +85,8 @@ Get individual movie with id. If no record found, empty json object will be disp
 `id=[integer]`
 #### Respond
 **_Success_**
-- _code_:200
-  _content_:
+- **_code_**: 200 <br/>
+  **_content_**:
   ```json
   {
     "date": "2021-04-30",
@@ -103,15 +103,15 @@ Get individual movie with id. If no record found, empty json object will be disp
   }
   ```
 **_Error_**
-- _code_: 400 BAD REQUEST
-  _content_:
+- **_code_**: 400 BAD REQUEST <br/>
+  **_content_**:
   ```json
   {
     "error":"Invalid request"
   }
   ```
-- _code_: 405 METHOD NOT ALLOWED
-  _content_: 
+- **_code_**: 405 METHOD NOT ALLOWED <br/>
+  **_content_**: 
   ```json
   {
     "code": 405,
@@ -119,8 +119,8 @@ Get individual movie with id. If no record found, empty json object will be disp
     "name": "Method Not Allowed"
   }
   ```
-- _code_: 500 INTERNAL SERVER ERROR
-  _content_ : 
+- **_code_**: 500 INTERNAL SERVER ERROR <br/>
+  **_content_**: 
   ```json
   {
     "error": "Internal Error"
@@ -138,14 +138,14 @@ Get all the different avilable genres
 `GET`
 #### Respond 
 **_Success_**
-- _code_: 200
-  _content_:
+- **_code_**: 200 <br/>
+  **_content_**:
   ``` json
   ["Adventure","Animation","Comedy"]
   ```
 **_Error_**
-- _code_: 405 METHOD NOT ALLOWED
-  _content_: 
+- **_code_**: 405 METHOD NOT ALLOWED <br/>
+  **_content_**: 
   ```json
   {
     "code": 405,
@@ -153,8 +153,8 @@ Get all the different avilable genres
     "name": "Method Not Allowed"
   }
   ```
-- _code_: 500 INTERNAL SERVER ERROR
-  _content_ : 
+- **_code_**: 500 INTERNAL SERVER ERROR <br/>
+  **_content_** : 
   ```json
   {
     "error": "Internal Error"
