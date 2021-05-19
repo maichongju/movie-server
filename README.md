@@ -30,6 +30,7 @@ Get all the movies in the database
       "like": 0,
       "name": "The Mitchells vs. the Machines"
     }
+    ]
   }
   ```
 
