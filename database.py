@@ -1,4 +1,5 @@
 import mysql.connector as connector
+from mysql.connector import cursor
 
 
 class Database:
@@ -51,6 +52,20 @@ class Database:
         except connector.Error as err:
             self.error = err
             return None
+
+    def execute(self, SQL, params=None):
+        try:
+            if self.cursor is None:
+                return None
+            if params is None:
+                self.cursor.execute(SQL)
+            else:
+                self.cursor.execute(SQL, params)
+            if 'INSERT' in SQL:
+                self._connect.commit()
+        except connector.Error as err:
+            self.error = err
+            raise err
 
     def hasError(self) -> bool:
         return self.error is not None

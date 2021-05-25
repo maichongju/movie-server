@@ -1,5 +1,5 @@
 import json
-from datetime import datetime
+from datetime import datetime, date
 
 
 class Movie():
@@ -8,8 +8,13 @@ class Movie():
         self.name = data['name'] if data is not None and 'name' in data else None
         self.director = data['director'] if data is not None and 'director' in data else None
         self.length = data['length'] if data is not None and 'length' in data else 0
-        self.date = data['date'].strftime('%Y-%m-%d') if data is not None and 'date' in data else datetime.now(
-        ).strftime('%Y-%m-%d')
+        if data is not None and 'date' in data:
+            if isinstance(data['date'], date):
+                self.date = data['date'].strftime('%Y-%m-%d')
+            else:
+                self.date = data['date']
+        else:
+            self.date = datetime.now().strftime('%Y-%m-%d')
         self.genres = [data['genres']
                        ] if data is not None and 'genres' in data else []
         self.like = data['like'] if data is not None and 'liek' in data else 0
@@ -20,10 +25,8 @@ class Movie():
     def toDict(self):
         return self.__dict__
 
-
-class MovieEncoder(json.JSONEncoder):
-    def default(self, o):
-        return o.__dict__
+    def toTuple(self):
+        return self.name, self.director, self.length, self.date,
 
 
 if __name__ == '__main__':

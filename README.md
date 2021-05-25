@@ -24,6 +24,7 @@ Using Flask as web host and MySQL as data storage. All data return in JSON forma
 **Table Of Content**
 - [/movies](#Movies)
 - [/movie](#Movie)
+- [/movie/{id}](#Movie-ID)
 - [/genres](#genres)
 
 ### Movies
@@ -74,11 +75,119 @@ Get all the movies in the database
   "error": "Internal Error"
 }
 ```
-
 ### Movie
+Add individual movie to the database if not already in database.
+#### URL
+`/movie`
+#### Method
+`POST`
+#### Data Params
+> Must be a valid JSON
+- name : string **(required)**
+- director: string **(required)**
+- genres : list of string **(required)** _if no genres then empty list_
+- date : string _must in such format YYYY-MM-DD_
+- length : integer
+#### Respond 
+**Success**
+- **_code_**: 201 <br/>
+**_content_**:
+    ``` json
+    {
+      "id": 1
+    }
+    ```
+**Error**
+- **_code_**: 400 BAD REQUEST <br/>
+**_content_**:
+    ``` json
+    {
+      "error":"Missing required field."
+    }
+    ```
+    OR
+    ```json
+    {
+      "error":"Request body must be in JSON"
+    }
+    ```
+    OR
+    ``` json
+    {
+      "error":"Field type error"
+    }
+    ```
+    OR
+    ``` json
+    {
+      "error":"date format must be YYYY-MM-DD"
+    }
+    ```
+    OR
+    ``` json
+    {
+      "error":"Movie with same name existed"
+    }
+    ```
+    OR
+    ``` json
+    {
+      "error":"[error message from database]"
+    }
+    ```
+
+- **_code_**: 409 CONFLICT <br/>
+**_content_**:
+    ``` json
+    {
+      "error":"Record already existed"
+    }
+    ```
+- **_code_**: 405 METHOD NOT ALLOWED <br/>
+  **_content_**: 
+  ```json
+  {
+    "code": 405,
+    "error": "The method is not allowed for the requested URL.",
+    "name": "Method Not Allowed"
+  }
+  ```
+- **_code_**: 500 INTERNAL SERVER ERROR <br/>
+  **_content_**: 
+  ```json
+  {
+    "error": "Internal Error"
+  }
+  ```
+#### Sample Call
+**POST**
+``` HTTP
+/movie
+```
+**body**
+```JSON
+{
+  "name": "The Mitchells vs. the Machines",
+  "date": "2021-04-30",
+  "director": "Michael Rianda",
+  "genres": [
+    "Adventure",
+    "Animation",
+    "Comedy"
+  ],
+  "length": 113
+}
+```
+**return**
+```json
+{
+  "id":1
+}
+```
+### Movie ID
 Get individual movie with id. If no record found, empty json object will be display
 ### URL
-`/movie`
+`/movie/{id}`
 ### Method
 `GET`
 ### URL Params
@@ -127,9 +236,26 @@ Get individual movie with id. If no record found, empty json object will be disp
   }
   ```
 #### Sample
-```http
-/movie?id=1
-```
+**GET**
+  ```http
+  /movie/1
+  ```
+  return 
+  ``` json
+    {
+      "date": "2021-04-30",
+      "director": "Michael Rianda",
+      "genres": [
+        "Adventure",
+        "Animation",
+        "Comedy"
+      ],
+      "id": 1,
+      "length": 113,
+      "like": 0,
+      "name": "The Mitchells vs. the Machines"
+    }
+  ```
 ### Genres
 Get all the different avilable genres
 #### URL
